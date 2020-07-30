@@ -1,0 +1,89 @@
+routes:
+  - id: 1 #演示Spring Cloud应用模糊匹配并走LB  # http://localhost:8081/janus-admin/admin/menu/manage/allMenu
+    filters:
+      - name: StripPrefix  #去前缀
+        args:
+          parts: 1
+      - name: AddRequestHeader  #添加Header
+        args:
+          X-Request-Blue: Blue
+          X-Request-Red: red
+    protocol: lb://sc
+    serviceName: janus-admin
+    loadBalancerName: round-robin #random、hash; default is round-robin
+    predicates: # and ; if need or add a new route
+      - name: PathRegex
+        args:
+          pattern: ^/janus-admin/.*
+
+  - id: 2 #演示 URL1->URL2 并走LB  #http://localhost:8081/api/getAllMenu
+    protocol: lb://sc
+    serviceName: janus-admin
+    filters:
+      - name: PathMapping
+        args:
+          /api/getAllMenu: "/admin/menu/manage/allMenu"
+    predicates: # and ; if need or add a new route
+      - name: PathPrecise
+        args:
+          pattern: /api/getAllMenu
+
+  - id: 3 #用于演示精准匹配,不走LB  http://localhost:8081/admin/menu/manage/allMenu
+    protocol: http
+    hosts:
+      - 127.0.0.1:8084
+    predicates: # and ; if need or add a new route
+      - name: PathPrecise
+        args:
+          paths: /admin/menu/manage/allMenu
+
+  - id: 4 #用于模糊匹配,不走LB
+    protocol: http
+    hosts:
+      - 127.0.0.1:8084
+    predicates: # and ; if need or add a new route
+      - name: PathRegex
+        args:
+          pattern: ^/janus-admin-test/.*
+
+
+  - id: 5 #用于演示精准匹配,不走LB  http://localhost:8081/admin1/menu/manage/allMenu3
+    filters:
+      - name: MockResponse
+        args:
+          /admin1/menu/manage/allMenu3: "hello word!"
+    protocol: http
+    hosts:
+      - 127.0.0.1:8084
+    predicates: # and ; if need or add a new route
+      - name: PathPrecise
+        args:
+          paths: /admin1/menu/manage/allMenu3
+
+
+  - id: 6 #用于演示精准匹配,不走LB,直接转发到指定的IP和端口   http://localhost:8081/admin2/menu/manage/allMenu2
+    filters:
+      - name: PathMapping
+        args:
+          /admin2/menu/manage/allMenu2: "/admin/menu/manage/allMenu"
+    protocol: http
+    hosts:
+      - 127.0.0.1:8084
+    predicates: # and ; if need or add a new route
+      - name: PathPrecise
+        args:
+          paths: /admin2/menu/manage/allMenu2
+
+  - id: 7 #根据配置的多个Hosts不通过注册中心进行LB  #http://localhost:8081/admin7/menu/manage/allMenu2
+    filters:
+      - name: PathMapping
+        args:
+          /admin7/menu/manage/allMenu2: "/admin/menu/manage/allMenu"
+    protocol: lb://hosts
+    hosts:
+      - 127.0.0.1:8084
+      - admin.qingcloud.net:80
+    predicates: # and ; if need or add a new route
+      - name: PathPrecise
+        args:
+          paths: /admin7/menu/manage/allMenu2
