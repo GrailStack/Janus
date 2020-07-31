@@ -3,7 +3,7 @@
     <img
       alt="janus-logo"
       src="https://avatars2.githubusercontent.com/u/67695022"
-      width="25%"
+      width="15%"
     />
   </a>
 </p>
