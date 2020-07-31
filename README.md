@@ -1,4 +1,5 @@
-![janus-logo](/docs/images/janus.png)
+<img src="https://avatars2.githubusercontent.com/u/67695022?s=200&v=4" alt="janus-logo" width="60%">
+
 ================
 
 ## 1.What is Janus?(什么是杰纳斯)
@@ -7,7 +8,16 @@
 
 >更多文档链接:http://janus.xujin.org
 
-## 2.启动测试
+## 2.Janus Team
+
+| Github Id | 角色 | github地址|
+| -------- | -------- | -------- |
+|  SoftwareKing  | PPMC | https://github.com/SoftwareKing|
+|  wolfgump  | PPMC| https://github.com/wolfgump |
+|  tbkk  | PPMC| https://github.com/tbkk |
+
+
+## 3.启动测试
 
 ### 启动参数设置
 以下三种方式选一种
