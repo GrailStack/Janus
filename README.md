@@ -1,5 +1,15 @@
-<img src="https://avatars2.githubusercontent.com/u/67695022" alt="janus-logo" width="30%">
-================
+<p align="left">
+  <a href="#">
+    <img
+      alt="janus-logo"
+      src="https://avatars2.githubusercontent.com/u/67695022"
+      width="25%"
+    />
+  </a>
+</p>
+杰纳斯(Janus),守护企业IT门户或微服务门户的两面神！
+
+---
 
 ## 1.What is Janus?(什么是杰纳斯)
 
