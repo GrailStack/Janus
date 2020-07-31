@@ -1,5 +1,4 @@
-<img src="https://avatars2.githubusercontent.com/u/67695022?s=200&v=4" alt="janus-logo" width="60%">
-
+<img src="/docs/images/janus.png" alt="janus-logo" width="60%">
 ================
 
 ## 1.What is Janus?(什么是杰纳斯)
