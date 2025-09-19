@@ -15,7 +15,7 @@
 
 杰纳斯(Janus),守护企业IT门户或微服务门户的两面神!如果您觉得Janus不错，欢迎Star！
 
->更多文档链接:http://janus.xujin.org
+>更多文档链接:http://janus.grailstack.com
 
 ## 2.Janus Team
 
